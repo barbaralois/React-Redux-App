@@ -13,7 +13,10 @@ function App(props) {
   };
   return (
     <div className="App">
-      <h1>Fun Facts Featuring Cats</h1>
+      <header>
+        <h1>Fun Facts Featuring Cats</h1>
+        <h3>A React/Redux Practice Project</h3>
+      </header>
       <CatPic />
       <CatFact />
       <button onClick={handleClick}>Get a New Fact</button>

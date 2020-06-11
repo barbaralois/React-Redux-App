@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
-import { fetchPic } from "../store/actions/picActions";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import { fetchPic } from '../store/actions/picActions';
 
-const CatPic = props => {
+const CatPic = (props) => {
   useEffect(() => {
     props.fetchPic();
   }, []);
@@ -14,25 +14,26 @@ const CatPic = props => {
 
   if (props.picError) {
     return (
-      <div>
+      <div className="pic-error">
         <h2>Uh oh!</h2>
         <p>There was an error loading a cat pic!</p>
       </div>
     );
   }
 
-  return <div>{props.pic && <img src={props.pic} alt="a cat" />}</div>;
+  return (
+    <div className="pic">
+      {props.pic && <img src={props.pic} alt="a cat" />}
+    </div>
+  );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     pic: state.picsReducer.pic,
     picIsFetching: state.picsReducer.picIsFetching,
-    picError: state.picsReducer.picError
+    picError: state.picsReducer.picError,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchPic }
-)(CatPic);
+export default connect(mapStateToProps, { fetchPic })(CatPic);

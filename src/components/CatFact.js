@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchFact } from "../store/actions/factActions";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchFact } from '../store/actions/factActions';
 
-const CatFact = props => {
+const CatFact = (props) => {
   useEffect(() => {
     props.fetchFact();
   }, []);
@@ -19,18 +19,15 @@ const CatFact = props => {
     );
   }
 
-  return <div>{props.fact && <h2>{props.fact}</h2>}</div>;
+  return <div className="fact">{props.fact && <h2>{props.fact}</h2>}</div>;
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     fact: state.factsReducer.fact,
     factIsFetching: state.factsReducer.factIsFetching,
-    factError: state.factsReducer.factError
+    factError: state.factsReducer.factError,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchFact }
-)(CatFact);
+export default connect(mapStateToProps, { fetchFact })(CatFact);
